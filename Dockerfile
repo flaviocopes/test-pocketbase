@@ -1,12 +1,10 @@
-FROM ubuntu:latest
+FROM alpine:latest
 
-ARG PB_VERSION=0.22.8
+ARG PB_VERSION=0.21.3
 
-RUN apt-get update && apt-get install --no-install-recommends -y \
+RUN apk add --no-cache \
     unzip \
-    ca-certificates \
-    wget && \
-    rm -rf /var/lib/apt/lists/*
+    ca-certificates
 
 # download and unzip PocketBase
 ADD https://github.com/pocketbase/pocketbase/releases/download/v${PB_VERSION}/pocketbase_${PB_VERSION}_linux_amd64.zip /tmp/pb.zip
